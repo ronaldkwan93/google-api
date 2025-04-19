@@ -3,6 +3,12 @@ export const getBookData = async(subject) => {
     if(!response.ok) {
         throw new Error('Failed to fetch data');
     }
-    const data = await response.json();
-    return data.items;
+    try {
+        const data = await response.json();
+        console.log(data.items)
+        return data.items;
+    } catch (error) {
+        return error;
+    }
+ 
 }
