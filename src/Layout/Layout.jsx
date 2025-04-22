@@ -4,6 +4,7 @@ import Form from "../Containers/Form/Form";
 import BookResults from "../Containers/BookResults/BookResults";
 import { getBookData } from "../services/dataService";
 import Intro from "../Components/Intro/Intro";
+import NavBar from "../Components/NavBar/NavBar";
 
 const Layout = () => {
   const [bookData, setBookData] = useState(null);
@@ -36,9 +37,10 @@ const Layout = () => {
 
   return (
     <>
+      <NavBar/>
       <Header />
       <Intro/>
-      <Form getFormData={getFormData} />
+      <Form getFormData={getFormData}/>
       {status === 'idle' && <div>Enter a search term</div>}
       {status === 'loading' &&  <div>Loading...</div>}
       {status === 'success' && <BookResults bookData={bookData} /> }

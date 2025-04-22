@@ -36,7 +36,7 @@ const Modal = ({ modal, setModal, book }) => {
               </div>
             ))}
         </div>
-        <img src={bookInfo.imageLinks.thumbnail} alt="" />
+        {bookInfo.imageLinks && <img src={bookInfo.imageLinks.thumbnail} alt="" />}
         <p>
           {bookInfo.description && !expand &&
             bookInfo.description.length >= 150 ?

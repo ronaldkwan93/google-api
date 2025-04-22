@@ -2,10 +2,18 @@
     
     display: flex;
     justify-content: center;
+    margin: 2em;
+
+    &__glass {
+        font-size: 3em;
+    }
 
     &__form {
-        width: 50%;
-        border: 1px solid black;
+        
+        border: 1px solid rgb(228, 225, 225);
+        padding: 0 2%;
         border-radius: 6px;
+        display: flex;
+    
     }
 }
