@@ -2,7 +2,7 @@
 const Header = () => {
   return (
     <div>
-      <h1>Google Book's API</h1>
+      <h1>Discover books</h1>
     </div>
   )
 }

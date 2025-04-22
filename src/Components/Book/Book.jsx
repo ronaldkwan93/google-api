@@ -1,29 +1,36 @@
 import { useState } from "react";
 import classes from "./Book.module.scss";
+import Modal from "../Modal/Modal";
 
 const Book = ({ book }) => {
-  const [expandDescript, setExpandDescript] = useState(false);
+  const [modal, setModal] = useState(false);
+ 
 
   const bookInfo = book.volumeInfo;
   const hasDescription =
     bookInfo.description && bookInfo.description.length > 0;
   const isLongDescription =
-    hasDescription && bookInfo.description.length >= 150;
+    hasDescription && bookInfo.description.length >= 100;
   let displayDescription = "";
   if (hasDescription) {
-    if (isLongDescription && !expandDescript) {
-      displayDescription = bookInfo.description.substring(0, 150) + "...";
+    if(isLongDescription){
+      displayDescription = bookInfo.description.substring(0, 100) + "...";
     } else {
       displayDescription = bookInfo.description;
     }
   }
 
-  const handleClick = () => {
-    setExpandDescript(!expandDescript);
+  const handleCardClick = (e) => {
+    if (modal) {
+      e.stopPropagation();
+      return;
+    }
+    setModal(true); 
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onClick={handleCardClick}>
+      {modal && <Modal modal={modal} setModal={setModal} book={book}/>}
       <p>{bookInfo.title}</p>
       <p>
         {bookInfo.authors
@@ -34,11 +41,6 @@ const Book = ({ book }) => {
       </p>
       <img src={bookInfo.imageLinks && bookInfo.imageLinks.thumbnail} alt="" />
       {hasDescription && <p>{displayDescription}</p>}
-      {isLongDescription && (
-        <button onClick={handleClick}>
-          {!expandDescript ? "See more" : "Show less"}
-        </button>
-      )}
     </div>
   );
 };

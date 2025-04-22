@@ -3,6 +3,7 @@ import Header from "../Components/Header/Header";
 import Form from "../Containers/Form/Form";
 import BookResults from "../Containers/BookResults/BookResults";
 import { getBookData } from "../services/dataService";
+import Intro from "../Components/Intro/Intro";
 
 const Layout = () => {
   const [bookData, setBookData] = useState(null);
@@ -36,6 +37,7 @@ const Layout = () => {
   return (
     <>
       <Header />
+      <Intro/>
       <Form getFormData={getFormData} />
       {status === 'idle' && <div>Enter a search term</div>}
       {status === 'loading' &&  <div>Loading...</div>}
