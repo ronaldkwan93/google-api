@@ -1,6 +1,10 @@
 .container {
   // border: 1px solid black;
-  width: 30%;
+  width: 25%;
   border-radius: 5px;
+  min-width: 200px;
+  max-width: 100%;
+
   background-color: #dde0e7;
 }
+
