@@ -31,12 +31,12 @@ const Modal = ({ modal, setModal, book }) => {
         <div className={classes.container__author}>
           {bookInfo.authors &&
             bookInfo.authors.map((author) => (
-              <div>
+              <div key={author.id}>
                 <p>{author}</p>
               </div>
             ))}
         </div>
-        {bookInfo.imageLinks && <img src={bookInfo.imageLinks.thumbnail} alt="" />}
+        <img src={bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : 'https://hospisource.com/assets/nopreview.png' }alt="" />
         <p>
           {bookInfo.description && !expand &&
             bookInfo.description.length >= 150 ?

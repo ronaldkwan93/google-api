@@ -31,7 +31,7 @@ const Book = ({ book }) => {
   return (
     <div className={classes.container} onClick={handleCardClick}>
       {modal && <Modal modal={modal} setModal={setModal} book={book}/>}
-      <p>{bookInfo.title}</p>
+      <p className={classes.container__title}>{bookInfo.title}</p>
       <p>
         {bookInfo.authors
           ? bookInfo.authors.map((author) => (
@@ -39,7 +39,7 @@ const Book = ({ book }) => {
             ))
           : ""}
       </p>
-      <img src={bookInfo.imageLinks && bookInfo.imageLinks.thumbnail} alt="" />
+      <img className={classes.container__img} src={bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : 'https://hospisource.com/assets/nopreview.png'} alt="book_thumbnail" />
       {hasDescription && <p>{displayDescription}</p>}
     </div>
   );
