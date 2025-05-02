@@ -8,7 +8,7 @@ import NavBar from "../Components/NavBar/NavBar";
 
 const Layout = () => {
   const [bookData, setBookData] = useState(null);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [status, setStatus] = useState("idle");
 
   const getFormData = (event) => {
@@ -19,32 +19,37 @@ const Layout = () => {
   };
 
   useEffect(() => {
-    
     if (input) {
-      setStatus('loading')
+      setStatus("loading");
       getBookData(input)
         .then((data) => {
           setBookData(data);
           // console.log(data);
-          setStatus('success')
+          setStatus("success");
         })
         .catch((e) => {
           console.log(e);
-          setStatus('failed')
+          setStatus("failed");
         });
     }
   }, [input]);
 
+  useEffect(() => {
+    document.title = "Discover Books";
+  }, []);
+
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <Header />
-      <Intro/>
-      <Form getFormData={getFormData}/>
-      {status === 'idle' && <div>Enter a search term</div>}
-      {status === 'loading' &&  <div>Loading...</div>}
-      {status === 'success' && <BookResults bookData={bookData} /> }
-      {status === 'failed' && <div>Error fetching books. Please try again.</div>} 
+      <Intro />
+      <Form getFormData={getFormData} />
+      {status === "idle" && <div>Enter a search term</div>}
+      {status === "loading" && <div>Loading...</div>}
+      {status === "success" && <BookResults bookData={bookData} />}
+      {status === "failed" && (
+        <div>Error fetching books. Please try again.</div>
+      )}
     </>
   );
 };
